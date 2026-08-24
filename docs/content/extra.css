@@ -1,0 +1,97 @@
+/* The theme sets white-space: nowrap on all cells, forcing horizontal scroll on
+   every wide table. Let cells wrap so tables fit the page container and read
+   vertically; the wrapper's horizontal scroll still engages when the columns
+   genuinely cannot fit. */
+article table thead tr th,
+article table tbody tr td {
+  white-space: normal;
+  overflow-wrap: break-word;
+  vertical-align: top;
+}
+
+/* Requirement IDs stay on one line so the first column keeps its shape. */
+article table tbody tr td:first-child {
+  white-space: nowrap;
+}
+
+:root {
+  /* Mermaid renders once, so its labels are recoloured by CSS per theme
+     rather than by re-rendering. Both values clear 4.5:1 on their own
+     background. */
+  --mermaid-label: #4a5661;
+}
+
+[data-theme="dark"] {
+  --mermaid-label: #9aa7b1;
+}
+
+/* Mermaid diagrams render once and are shown under both themes, so their
+   palette is chosen for contrast on either background: transparent canvas,
+   mid-grey strokes and labels, dark text inside the light node fills.
+   Edge labels are HTML inside foreignObject, so they need `color`, not
+   `fill`, and inherit the page's near-black text without this. */
+.mermaid svg {
+  background: transparent;
+}
+
+.mermaid .cluster rect {
+  fill: transparent !important;
+  stroke: #7c8b96 !important;
+  stroke-dasharray: 4 3;
+}
+
+/* Cluster titles name the layers, so they carry more weight than edge labels. */
+.mermaid .cluster text,
+.mermaid .cluster tspan,
+.mermaid .cluster foreignObject div,
+.mermaid .cluster foreignObject span,
+.mermaid .cluster .nodeLabel,
+.mermaid .cluster .nodeLabel p {
+  fill: var(--mermaid-label) !important;
+  color: var(--mermaid-label) !important;
+  font-weight: 600;
+}
+
+/* SVG text: any remaining non-foreignObject labels. */
+.mermaid text.messageText,
+.mermaid .titleText,
+.mermaid .loopText,
+.mermaid .loopText tspan {
+  fill: var(--mermaid-label) !important;
+}
+
+/* HTML text inside foreignObject: edge labels, and node labels in some
+   diagram types. Both the wrapper div and its inner span must be set. */
+.mermaid foreignObject div,
+.mermaid foreignObject span,
+.mermaid .edgeLabel,
+.mermaid .edgeLabel p,
+.mermaid .nodeLabel,
+.mermaid .nodeLabel p {
+  color: var(--mermaid-label) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Mermaid paints a rect behind each edge label in the primary colour, which
+   reads as a pale halo on a dark page. Node boxes use the same fill but carry
+   `label-container`, so only the bare label rects are cleared. */
+.mermaid g.label > rect:not(.label-container),
+.mermaid .edgeLabel rect,
+.mermaid .edgeLabels rect {
+  fill: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Node labels sit on the light node fill, so they stay dark. */
+.mermaid .node foreignObject div,
+.mermaid .node foreignObject span,
+.mermaid .node .nodeLabel,
+.mermaid .node .nodeLabel p,
+.mermaid .node text,
+.mermaid .node tspan,
+.mermaid .stateGroup text,
+.mermaid .stateGroup tspan {
+  color: #10202a !important;
+  fill: #10202a !important;
+}

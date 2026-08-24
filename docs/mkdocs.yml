@@ -1,0 +1,63 @@
+site_name: paradigm-fit
+site_description: IEC 62304 documentation for the paradigm-fit fMRI pre-scan check
+docs_dir: content
+site_dir: site
+
+theme:
+  name: shadcn
+  custom_dir: overrides
+
+extra_css:
+  - extra.css
+
+nav:
+  - Overview: index.md
+  - Development:
+      - Development plan: development/development-plan.md
+      - Coding standard: development/coding-standard.md
+  - Requirements:
+      - User needs: requirements/user-needs.md
+      - Clinical constraints: requirements/clinical-constraints.md
+      - Software requirements: requirements/software-requirements.md
+  - Architecture:
+      - Software architecture: architecture/software-architecture.md
+      - Detailed design: architecture/detailed-design.md
+  - Risk:
+      - Risk analysis: risk/risk-analysis.md
+      - SOUP inventory: risk/soup-inventory.md
+  - Verification:
+      - Test plan: verification/test-plan.md
+      - Traceability matrix: verification/traceability-matrix.md
+
+plugins:
+  - search
+  - mermaid2:
+      arguments:
+        theme: base
+        themeVariables:
+          # Neutral, low-saturation fills with strong strokes and dark text:
+          # legible on both the light and dark page backgrounds.
+          background: 'transparent'
+          primaryColor: '#8ab4c8'
+          primaryBorderColor: '#0b7285'
+          primaryTextColor: '#10202a'
+          secondaryColor: '#c9d3da'
+          secondaryBorderColor: '#5c6572'
+          secondaryTextColor: '#10202a'
+          tertiaryColor: '#dfe5ea'
+          tertiaryBorderColor: '#5c6572'
+          tertiaryTextColor: '#10202a'
+          lineColor: '#7c8b96'
+          textColor: '#7c8b96'
+          clusterBkg: 'transparent'
+          clusterBorder: '#7c8b96'
+          nodeTextColor: '#10202a'
+          edgeLabelBackground: 'transparent'
+
+markdown_extensions:
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid

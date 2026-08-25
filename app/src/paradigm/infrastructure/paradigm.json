@@ -1,0 +1,41 @@
+{
+  "scanDurationSec": 300,
+  "blocks": [
+    {
+      "id": 1,
+      "label": "Verb generation",
+      "type": "active",
+      "durationSec": 20
+    },
+    {
+      "id": 2,
+      "label": "Rest",
+      "type": "rest",
+      "durationSec": 20
+    },
+    {
+      "id": 3,
+      "label": "Verb generation",
+      "type": "active",
+      "durationSec": 20
+    },
+    {
+      "id": 4,
+      "label": "Rest",
+      "type": "rest",
+      "durationSec": 20
+    },
+    {
+      "id": 5,
+      "label": "Finger tapping",
+      "type": "active",
+      "durationSec": 30
+    },
+    {
+      "id": 6,
+      "label": "Rest",
+      "type": "rest",
+      "durationSec": 30
+    }
+  ]
+}
